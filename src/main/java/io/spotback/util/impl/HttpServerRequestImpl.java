@@ -11,6 +11,7 @@ import io.vertx.core.net.NetSocket;
 import io.vertx.core.net.SocketAddress;
 
 import javax.net.ssl.SSLPeerUnverifiedException;
+import javax.net.ssl.SSLSession;
 import javax.security.cert.X509Certificate;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -73,6 +74,11 @@ public class HttpServerRequestImpl implements HttpServerRequest {
     @Override
     public HttpServerRequest resume() {
         return this;
+    }
+
+    @Override
+    public HttpServerRequest fetch(long l) {
+        return null;
     }
 
     @Override
@@ -154,6 +160,11 @@ public class HttpServerRequestImpl implements HttpServerRequest {
     }
 
     @Override
+    public long bytesRead() {
+        return 0;
+    }
+
+    @Override
     public HttpServerResponse response() {
         return response;
     }
@@ -215,6 +226,11 @@ public class HttpServerRequestImpl implements HttpServerRequest {
                 public int port() {
                     return remotePort;
                 }
+
+                @Override
+                public String path() {
+                    return uri;
+                }
             };
         }
         return remoteAddress;
@@ -234,9 +250,19 @@ public class HttpServerRequestImpl implements HttpServerRequest {
                 public int port() {
                     return localPort;
                 }
+
+                @Override
+                public String path() {
+                    return uri;
+                }
             };
         }
         return localAddress;
+    }
+
+    @Override
+    public SSLSession sslSession() {
+        return null;
     }
 
     @Override
@@ -307,6 +333,11 @@ public class HttpServerRequestImpl implements HttpServerRequest {
 
     @Override
     public HttpConnection connection() {
+        return null;
+    }
+
+    @Override
+    public HttpServerRequest streamPriorityHandler(Handler<StreamPriority> handler) {
         return null;
     }
 

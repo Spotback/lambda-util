@@ -1,5 +1,6 @@
 package io.spotback.util;
 
+
 import com.amazonaws.services.lambda.runtime.Context;
 import io.spotback.util.impl.HttpServerRequestImpl;
 import io.spotback.util.impl.HttpServerResponseImpl;
@@ -91,6 +92,8 @@ public class LambdaServer implements HttpServer {
 
     @Override
     public HttpServer listen() {
+        localHost = "0.0.0.0";
+        localPort = 0;
         processRequest();
         return this;
     }
