@@ -13,6 +13,7 @@ import io.vertx.core.json.DecodeException;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
+import io.vertx.core.net.SocketAddress;
 import io.vertx.core.streams.ReadStream;
 
 import java.io.IOException;
@@ -68,6 +69,11 @@ public class LambdaServer implements HttpServer {
     }
 
     @Override
+    public HttpServer exceptionHandler(Handler<Throwable> handler) {
+        return null;
+    }
+
+    @Override
     public ReadStream<ServerWebSocket> websocketStream() {
         return null;
     }
@@ -104,6 +110,11 @@ public class LambdaServer implements HttpServer {
         listenHandler.handle(Future.succeededFuture(this));
         processRequest();
         return this;
+    }
+
+    @Override
+    public HttpServer listen(SocketAddress socketAddress, Handler<AsyncResult<HttpServer>> handler) {
+        return null;
     }
 
     @Override
