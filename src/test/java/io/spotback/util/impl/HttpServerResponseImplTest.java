@@ -154,7 +154,7 @@ public class HttpServerResponseImplTest {
         context.assertEquals(response, response.write("Some data"));
         response.end();
         JsonObject output = readOuput();
-        context.assertFalse(output.getBoolean("isBase64Encoded"));
+        context.assertTrue(output.getBoolean("isBase64Encoded"));
         context.assertEquals(200, output.getInteger("statusCode"));
         context.assertEquals(Integer.toString(dataLength), output.getJsonObject("headers").getString("Content-Length"));
         context.assertEquals("Some data", new String(output.getBinary("body")));

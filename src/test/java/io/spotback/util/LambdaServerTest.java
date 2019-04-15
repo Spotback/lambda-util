@@ -91,7 +91,7 @@ public class LambdaServerTest {
         JsonObject response = new JsonObject(outputData.toString());
         context.assertEquals("4", response.getJsonObject("headers").getString("content-length"));
         context.assertEquals(200, response.getInteger("statusCode"));
-        context.assertFalse(response.getBoolean("isBase64Encoded"));
+        context.assertTrue(response.getBoolean("isBase64Encoded"));
         context.assertEquals("data", new String(response.getBinary("body")));
     }
 
