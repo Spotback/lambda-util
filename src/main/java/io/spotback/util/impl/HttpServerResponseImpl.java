@@ -390,7 +390,7 @@ public class HttpServerResponseImpl implements HttpServerResponse {
 
         outputJson.put("headers", outputHeaders);
         outputJson.put("statusCode", statusCode);
-        outputJson.put("isBase64Encoded", false);
+        outputJson.put("isBase64Encoded", true);
         outputJson.put("body", body().getBytes());
 
         try {
